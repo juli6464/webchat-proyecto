@@ -4,7 +4,15 @@ module.exports = httpServer => {
     const io = new Server(httpServer);
 
     io.on("connection", socket => {
-        console.log(socket.id);
+       
+        socket.on("message", message => {
+
+            io.emit("message", {
+                user: "pepe",
+                message
+            });
+        });
+        
     });
     
 }
